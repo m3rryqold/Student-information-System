@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Students</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/css/uikit.min.css" />
+    </head>
+    <body>
+        <div class="uk-container">
+            <h4>Students</h4>
+            <% for(var x=0; x<students.length; x++){%>
+            
+            <div class="uk-card uk-card-default uk-width-1-2@m">
+                <div class="uk-card-header">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-card-title uk-margin-remove-bottom"><%= students[x].name %></h4>
+                            <p class="uk-text-meta uk-margin-remove-top"><%= students[x].email %></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body">
+                    <p>A <%= students[x].level %> level student in the department of <%= students[x].department %></p>
+                </div>
+                <div class="uk-card-footer">
+                    <p uk-margin>
+                    <button class="uk-button uk-button-primary uk-button-medium details" id= "<%=students[x]._id%>">See More</button>
+                    
+                    <button class="uk-button uk-button-secondary uk-button-medium">Edit</button>
+                    <button class="uk-button uk-button-danger uk-button-medium">Delete</button></p>
+                </div>
+
+                <div id="see-more" uk-modal>
+                    <div class="uk-modal-dialog">
+                        <button class="uk-modal-close-default" type="button" uk-close></button>
+                        <div class="uk-modal-header">
+                            <h2 class="uk-modal-title mtitle"></h2>
+                        </div>
+                        <div class="uk-modal-body">
+                            <h3>Name</h3>
+                            <p id="name"></p>
+                            <h3>Course</h3>
+                            <p id="course"></p>
+                            <h3>Department</h3>
+                            <p id="department"></p>
+                            <h3>Faculty</h3>
+                            <p id="faculty"></p>
+                            <h3>Level</h3>
+                            <p id="level"></p>
+                            <h3>Email</h3>
+                            <p id="email"></p>
+                        </div>
+                        <div class="uk-modal-footer uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+            <br>
+            <%}%>
+        </div>
+        
+        <script src="main.js"></script>
+        <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/js/uikit-icons.min.js"></script>
+    </body>
+</html>

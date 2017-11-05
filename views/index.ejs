@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to SIS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- UIkit CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/css/uikit.min.css" />
+
+    </head>
+
+    <body>
+        <div class="uk-container">
+        <fieldset class="uk-fieldset">
+            <h1 class="uk-heading-divider uk-background-secondary uk-light">The Student Information System (SIS)</h1>
+
+            <form action= "/register" method="POST">
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="name">Name</label>
+                <input class="uk-input" type="text" name="name" placeholder="Surname First" required>
+                </div>
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="course">Course</label>
+                <input class="uk-input" type="text" name="course" placeholder="Course" required>
+                </div>
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="department">Department</label>
+                <input class="uk-input" type="text" name="department" placeholder="Department" required>
+                </div>
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="faculty">Faculty</label>
+                <input class="uk-input" type="text" name="faculty" placeholder="Faculty" required>
+                </div>
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="level">Level</label>
+                    <input class="uk-radio" type="radio" name="level" value="100">100
+                    <input class="uk-radio" type="radio" name="level" value="200">200
+                    <input class="uk-radio" type="radio" name="level" value="300">300
+                    <input class="uk-radio" type="radio" name="level" value="400">400
+                    <input class="uk-radio" type="radio" name="level" value="500">500
+                </div>
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="email">Email</label>
+                <input class="uk-input" type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="uk-margin">
+                <label class="uk-label uk-background-secondary uk-light" for="key">Key</label>
+                <input class="uk-input" type="text" name="key" placeholder="Secret Key, Remember this" required>
+                </div>
+                <button class="uk-button uk-button-secondary" type="submit">Submit Details</button>
+            </form>
+            </fieldset>
+        </div>
+        <script src="main.js"></script>
+    <!-- UIkit JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/js/uikit.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/js/uikit-icons.min.js"></script>
+    </body>
+</html>
+
