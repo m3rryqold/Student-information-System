@@ -41,7 +41,18 @@ app.get('/students', (req, res) => {
 	})
 	
 })
-app.post("/details", (req, res, next) => {
+app.post("/students/details", (req, res, next) => {
+	db.collection('students').findOne({
+		_id: ID(req.body.id) }, (err, result) => {
+		if (err) {
+		  console.log(err.message, "Failed to get student")
+		} else {
+		  res.send(result)
+		}
+	  });
+})
+
+app.post("/students/edit", (req, res, next) => {
 	db.collection('students').findOne({
 		_id: ID(req.body.id) }, (err, result) => {
 		if (err) {

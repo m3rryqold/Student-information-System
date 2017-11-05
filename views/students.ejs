@@ -7,44 +7,50 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- UIkit CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/css/uikit.min.css" />
+        
     </head>
-    <body>
-        <div class="uk-container">
-            <h4>Students</h4>
-            <% for(var x=0; x<students.length; x++){%>
+    <body class="uk-flex uk-flex-column">
+        <div>
+            <h1 class="uk-heading-line uk-heading-divider uk-text-center uk-background-secondary uk-light"><span>Students<span></h4>
+            <div class="uk-container uk-flex uk-flex-around">
             
-            <div class="uk-card uk-card-default uk-width-1-2@m">
-                <div class="uk-card-header">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto">
-                            
-                        </div>
-                        <div class="uk-width-expand">
-                            <h4 class="uk-card-title uk-margin-remove-bottom"><%= students[x].name %></h4>
-                            <p class="uk-text-meta uk-margin-remove-top"><%= students[x].email %></p>
+                <% for(var x=0; x<students.length; x++){%>
+                
+                <div class="uk-card uk-card-default uk-width-1-2@m">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                
+                            </div>
+                            <div class="uk-width-expand">
+                                <h4 class="uk-card-title uk-margin-remove-bottom"><%= students[x].name %></h4>
+                                <p class="uk-text-meta uk-margin-remove-top"><%= students[x].email %></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="uk-card-body">
-                    <p>A <%= students[x].level %> level student in the department of <%= students[x].department %></p>
-                </div>
-                <div class="uk-card-footer">
-                    <p uk-margin>
-                    <button class="uk-button uk-button-primary uk-button-medium details" id= "<%=students[x]._id%>">See More</button>
-                    
-                    <button class="uk-button uk-button-secondary uk-button-medium">Edit</button>
-                    <button class="uk-button uk-button-danger uk-button-medium">Delete</button></p>
-                </div>
-
-                <div id="see-more" uk-modal>
+                    <div class="uk-card-body">
+                        <p>A <%= students[x].level %> level student in the department of <%= students[x].department %></p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <p uk-margin id= "<%=students[x]._id%>">
+                        <button class="uk-button uk-button-primary uk-button-medium details" >See More</button>
+                        
+                        <button class="uk-button uk-button-secondary uk-button-medium edit">Edit</button>
+                        <button class="uk-button uk-button-danger uk-button-medium">Delete</button></p>
+                    </div>
+                
+                
+            </div>          
+            <br>
+            <%}%>
+            <!--Modal-->
+            <div class="uk-modal" id="see-more">
                     <div class="uk-modal-dialog">
                         <button class="uk-modal-close-default" type="button" uk-close></button>
                         <div class="uk-modal-header">
-                            <h2 class="uk-modal-title mtitle"></h2>
+                            <h2 class="uk-modal-title mtitle uk-text-center uk-background-secondary uk-light uk-heading-line"></h2>
                         </div>
                         <div class="uk-modal-body">
-                            <h3>Name</h3>
-                            <p id="name"></p>
                             <h3>Course</h3>
                             <p id="course"></p>
                             <h3>Department</h3>
@@ -60,15 +66,116 @@
                             <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
                         </div>
                     </div>
+            </div>
+
+            <!--Edit Modal-->
+            <div class="uk-modal" id="edit-student">
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title etitle uk-text-center uk-background-secondary uk-light uk-heading-line"></h2>
                 </div>
-            </div>          
-            <br>
-            <%}%>
+                <div class="uk-modal-body">
+                    <fieldset class="uk-fieldset">
+                    <form action= "/register" method="POST">
+                        <div class="uk-margin">
+                        <label class="uk-label uk-background-secondary uk-light" for="name">Name</label>
+                        <input class="uk-input ename" type="text" name="name" placeholder="Surname First" required>
+                        </div>
+                        <div class="uk-margin">
+                        <label class="uk-label uk-background-secondary uk-light" for="course">Course</label>
+                        <input class="uk-input ecourse" type="text" name="course" placeholder="Course" required>
+                        </div>
+                        <div class="uk-margin">
+                        <label class="uk-label uk-background-secondary uk-light" for="department">Department</label>
+                        <input class="uk-input edepartment" type="text" name="department" placeholder="Department" required>
+                        </div>
+                        <div class="uk-margin">
+                        <label class="uk-label uk-background-secondary uk-light" for="faculty">Faculty</label>
+                        <input class="uk-input efaculty" type="text" name="faculty" placeholder="Faculty" required>
+                        </div>
+                        <div class="uk-margin">
+                        <label class="uk-label uk-background-secondary uk-light" for="level">Level</label>
+                        <input class="uk-input elevel" type="number" name="level" placeholder="Level" required>
+                        </div>
+                        <div class="uk-margin">
+                        <label class="uk-label uk-background-secondary uk-light" for="email">Email</label>
+                        <input class="uk-input eemail" type="email" name="email" placeholder="Email" required>
+                        </div>
+                        
+                        <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-secondary" type="submit">Submit</button>
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                        </div>
+                        
+                    </form>
+                    </fieldset>
+                </div>
+                </div>
+            </div>    
         </div>
         
-        <script src="main.js"></script>
         <!-- UIkit JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/js/uikit.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.33/js/uikit-icons.min.js"></script>
+        <script src="main.js"></script>
+        <!-- View More Details Script -->
+        <script>
+        function e(element) {
+        return document.querySelector(element)
+    }
+            let details = document.getElementsByClassName('details')
+            for (let x = 0; x < details.length; x++) {    
+                details[x].addEventListener('click', () => {
+                    fetch('/students/details', {
+                        method: 'post',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            'id': details[x].parentNode.id,
+                        })
+                    }).then(res => {
+                        if(res.ok) return res.json()
+                    }).then(data => {
+                        e('.mtitle').innerHTML = `<span>${data.name}</span>`
+                        e('#course').innerHTML = data.course
+                        e('#department').innerHTML = data.department
+                        e('#faculty').innerHTML = data.faculty
+                        e('#level').innerHTML = data.level
+                        e('#email').innerHTML = data.email
+                        UIkit.modal('#see-more').show()
+                    })
+                })
+            }
+        </script>
+
+        <!--View details to edit script -->
+        <script>
+        function e(element) {
+        return document.querySelector(element)
+    }
+            let edit = document.getElementsByClassName('edit')
+            for (let x = 0; x < edit.length; x++) {    
+                edit[x].addEventListener('click', () => {
+                    fetch('/students/edit', {
+                        method: 'post',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            'id': edit[x].parentNode.id
+                        })
+                    }).then(res => {
+                        if(res.ok) return res.json()
+                    }).then(data => {
+                        e('.etitle').innerHTML = `<span>${data.name}</span>`
+                        e('.ename').value = data.name
+                        e('.ecourse').value = data.course
+                        e('.edepartment').value = data.department
+                        e('.efaculty').value = data.faculty
+                        e('.elevel').value = data.level
+                        e('.eemail').value = data.email
+                        UIkit.modal('#edit-student').show()
+                    })
+                })
+            }
+        </script>
     </body>
 </html>
