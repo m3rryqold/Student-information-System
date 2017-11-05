@@ -77,7 +77,8 @@
                 </div>
                 <div class="uk-modal-body">
                     <fieldset class="uk-fieldset">
-                    <form action= "/register" method="POST">
+                    <form>
+                        <input type="hidden" name="_id" class="_id">
                         <div class="uk-margin">
                         <label class="uk-label uk-background-secondary uk-light" for="name">Name</label>
                         <input class="uk-input ename" type="text" name="name" placeholder="Surname First" required>
@@ -104,7 +105,7 @@
                         </div>
                         
                         <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-secondary" type="submit">Submit</button>
+                        <button class="uk-button uk-button-secondary update" type="button" id="update">Update</button>
                             <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
                         </div>
                         
@@ -176,6 +177,37 @@
                     })
                 })
             }
+        <!--Update Details-->
+            if(e('#update') !== null){
+                        e('#update').addEventListener('click', () => {
+                        let _id = e('._id').value
+                        let name = e('.ename').value
+                        let course = e('.ecourse').value
+                        let department = e('.edepartment').value
+                        let faculty = e('.efaculty').value
+                        let level = e('.elevel').value
+                        let email = e('.eemail').value
+
+                        fetch('/students/update', {
+                            method: 'put',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                '_id': _id,
+                                'name': name,
+                                'course': course,
+                                'department': department,
+                                'faculty': faculty,
+                                'level': level,
+                                'email': email
+                            })
+                        }).then(res => {
+                            if(res.ok) return res.json
+                        }).then(data => {
+                            window.location.reload(true)
+                        })
+                    })
+                   }
         </script>
+     
     </body>
 </html>

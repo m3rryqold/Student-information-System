@@ -74,16 +74,18 @@ app.post('/register', (req,res) => {
 	})
 })
 
-app.put('/quotes', (req, res) => {
+app.put('/students/update', (req, res) => {
 	
-	db.collection('quotes').findOneAndUpdate({name: req.body.change},{
-		$set: {
+	db.collection('students').findOneAndUpdate({_id: ID(req.body._id)},{
+		
 			name: req.body.name,
-			quote: req.body.quote
-		}
-	}, {
-		sort: {_id: -1},
-		upsert: true
+			course: req.body.course,
+			department: req.body.department,
+			faculty: req.body.faculty,
+			level: req.body.level,
+			email: req.body.email
+		}, {
+		upsert: false
 	}, (err, result) => {
 		if (err) return res.send(err)
 		res.send(result)
