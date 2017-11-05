@@ -166,6 +166,7 @@
                     }).then(res => {
                         if(res.ok) return res.json()
                     }).then(data => {
+                        e('._id').value = data._id
                         e('.etitle').innerHTML = `<span>${data.name}</span>`
                         e('.ename').value = data.name
                         e('.ecourse').value = data.course
