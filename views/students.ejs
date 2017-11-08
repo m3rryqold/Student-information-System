@@ -12,6 +12,7 @@
     <body class="uk-flex uk-flex-column">
         <div>
             <h1 class="uk-heading-line uk-heading-divider uk-text-center uk-background-secondary uk-light"><span>Students<span></h4>
+            <a href="/" class="uk-button uk-align-center uk-background-primary uk-light">Register Student</a>
             <div class="uk-container uk-flex uk-flex-around">
             
                 <% for(var x=0; x<students.length; x++){%>
@@ -32,18 +33,18 @@
                         <p>A <%= students[x].level %> level student in the department of <%= students[x].department %></p>
                     </div>
                     <div class="uk-card-footer">
-                        <p uk-margin id= "<%=students[x]._id%>">
+                        <p uk-margin id= "<%=students[x]._id%>" data-title="<%=students[x].name %>">
                         <button class="uk-button uk-button-primary uk-button-medium details" >See More</button>
                         
                         <button class="uk-button uk-button-secondary uk-button-medium edit">Edit</button>
-                        <button class="uk-button uk-button-danger uk-button-medium">Delete</button></p>
+                        <button class="uk-button uk-button-danger uk-button-medium delete">Delete</button></p>
                     </div>
                 
                 
             </div>          
             <br>
             <%}%>
-            <!--Modal-->
+            <!--View Modal-->
             <div class="uk-modal" id="see-more">
                     <div class="uk-modal-dialog">
                         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -208,6 +209,33 @@
                         })
                     })
                    }
+        
+        <!-- Delete -->
+        let remove = document.getElementsByClassName('delete')
+        if(remove !== null){
+            for(var x=0; x<remove.length; x++){
+                UIkit.util.on(remove[x], 'click', function (e) {
+                    e.preventDefault()
+                    e.target.blur()
+                    console.log(e.target.parentNode.id)
+                    let name = e.target.parentNode.dataset.title
+                    UIkit.modal.confirm(`Delete ${name}'s profile?`).then(() => {
+                        fetch('/students/delete', {
+                            method: 'delete',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                _id: e.target.parentNode.id
+                            })
+                        }).then(res => {
+                            if (res.ok) return res.json()
+                        }).then(data => {
+                            console.log(data)
+                            window.location.reload(true)
+                        })
+                    })
+                })
+            }
+        }
         </script>
      
     </body>

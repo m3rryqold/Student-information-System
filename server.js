@@ -92,12 +92,13 @@ app.put('/students/update', (req, res) => {
 	})
 })
 
-app.delete('/quotes', (req, res) => {
+app.delete('/students/delete', (req, res, next) => {
 	//Handle delete event here
-	db.collection('quotes').findOneAndDelete(
-		{name: req.body.name},
+	db.collection('students').remove({
+		_id: ID(req.body._id)
+	},
 		(err, result) => {
 			if (err) return res.send(500, err)
-			res.send({message: 'A grey quote has been removed'})
+			res.send({message: 'Student Deleted'})
 		})
 })
